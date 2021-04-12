@@ -1,9 +1,14 @@
 // User Input
+var previousSearch = "Your recent searches";
 var userInput = 'Chicago';
 var fiveForecast;
 var currentWeather;
 var previousCities = $('#previousCities')
 var recentCity;
+updateHistory();
+function updateHistory(){
+    $('#previousSearch').text(localStorage.getItem('City: '))
+}
 // Base Location to pull for
 fiveForecast = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userInput + '&units=imperial&appid=e899ec3ef5e0839661102e2153dd0fdd';
 currentWeather = 'https://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&units=imperial&appid=e899ec3ef5e0839661102e2153dd0fdd';
@@ -27,7 +32,10 @@ $('#inputForm').on('keypress',function(e) {
         recentCity = $('<button>');
         recentCity.text(userInput);
         recentCity.addClass('my-1');
+        recentCity.addClass('cardHeader');
         recentCity.attr('type', 'button');
+        previousSearch += ", " + userInput.toString();
+        localStorage.setItem('City: ', previousSearch);
         previousCities.append(recentCity);
         pathUpdate();
         return {
@@ -41,7 +49,10 @@ $('#inputButton').on('click', function(){
     recentCity = $('<button>');
     recentCity.text(userInput);
     recentCity.addClass('my-1');
+    recentCity.addClass('cardHeader');
     recentCity.attr('type', 'button');
+    previousSearch += ", " + userInput.toString();
+    localStorage.setItem('City: ', previousSearch);
     previousCities.append(recentCity);
     pathUpdate();
     return {
@@ -57,6 +68,7 @@ $('#previousCities').on('click', function(event){
 })
 // Function to update weather data
 function pathUpdate(){
+    updateHistory();
     $('#inputForm').val("");
     fiveForecast = 'https://api.openweathermap.org/data/2.5/forecast?q=' + userInput + '&units=imperial&appid=e899ec3ef5e0839661102e2153dd0fdd';
     currentWeather = 'https://api.openweathermap.org/data/2.5/weather?q=' + userInput + '&units=imperial&appid=e899ec3ef5e0839661102e2153dd0fdd';
@@ -74,41 +86,41 @@ function pathUpdate(){
         var Icon = $('#currentIcon');
         var currentIcon = data.weather[0].icon;
         if(currentIcon === '01d'){
-            Icon.attr('src', './assets/weather_icons/01d.png')
+            Icon.attr('src', './assets/weatherIcons/01d.png')
         } else if (currentIcon === '01n'){
-            Icon.attr('src', './assets/weather_icons/01n.png')
+            Icon.attr('src', './assets/weatherIcons/01n.png')
         } else if (currentIcon === '02d'){
-            Icon.attr('src', './assets/weather_icons/02d.png')
+            Icon.attr('src', './assets/weatherIcons/02d.png')
         } else if (currentIcon === '02n'){
-            Icon.attr('src', './assets/weather_icons/02n.png')
+            Icon.attr('src', './assets/weatherIcons/02n.png')
         } else if (currentIcon === '03d'){
-            Icon.attr('src', './assets/weather_icons/03d.png')
+            Icon.attr('src', './assets/weatherIcons/03d.png')
         } else if (currentIcon === '03n'){
-            Icon.attr('src', './assets/weather_icons/03d.png')
+            Icon.attr('src', './assets/weatherIcons/03d.png')
         } else if (currentIcon === '04d'){
-            Icon.attr('src', './assets/weather_icons/04d.png')
+            Icon.attr('src', './assets/weatherIcons/04d.png')
         } else if (currentIcon === '04n'){
-            Icon.attr('src', './assets/weather_icons/04d.png')
+            Icon.attr('src', './assets/weatherIcons/04d.png')
         } else if (currentIcon === '09d'){
-            Icon.attr('src', './assets/weather_icons/09d.png')
+            Icon.attr('src', './assets/weatherIcons/09d.png')
         } else if (currentIcon === '09n'){
-            Icon.attr('src', './assets/weather_icons/09d.png')
+            Icon.attr('src', './assets/weatherIcons/09d.png')
         } else if (currentIcon === '10d'){
-            Icon.attr('src', './assets/weather_icons/10d.png')
+            Icon.attr('src', './assets/weatherIcons/10d.png')
         } else if (currentIcon === '10n'){
-            Icon.attr('src', './assets/weather_icons/10n.png')
+            Icon.attr('src', './assets/weatherIcons/10n.png')
         } else if (currentIcon === '11d'){
-            Icon.attr('src', './assets/weather_icons/11d.png')
+            Icon.attr('src', './assets/weatherIcons/11d.png')
         } else if (currentIcon === '11n'){
-            Icon.attr('src', './assets/weather_icons/11d.png')
+            Icon.attr('src', './assets/weatherIcons/11d.png')
         } else if (currentIcon === '13d'){
-            Icon.attr('src', './assets/weather_icons/13d.png')
+            Icon.attr('src', './assets/weatherIcons/13d.png')
         } else if (currentIcon === '13n'){
-            Icon.attr('src', './assets/weather_icons/13d.png')
+            Icon.attr('src', './assets/weatherIcons/13d.png')
         } else if (currentIcon === '50d'){
-            Icon.attr('src', './assets/weather_icons/50d.png')
+            Icon.attr('src', './assets/weatherIcons/50d.png')
         } else if (currentIcon === '50n'){
-            Icon.attr('src', './assets/weather_icons/50d.png')
+            Icon.attr('src', './assets/weatherIcons/50d.png')
         }
     
         var unixFormat = moment.unix(data.dt).format('dddd, h:mm a');
@@ -158,205 +170,205 @@ function pathUpdate(){
             var day1Icon = data.list[4].weather[0].icon;
             var iconOne = $('#day1Icon');
             if(day1Icon === '01d'){
-                iconOne.attr('src', './assets/weather_icons/01d.png')
+                iconOne.attr('src', './assets/weatherIcons/01d.png')
             } else if (day1Icon === '01n'){
-                iconOne.attr('src', './assets/weather_icons/01n.png')
+                iconOne.attr('src', './assets/weatherIcons/01n.png')
             }   else if (day1Icon === '02d'){
-                iconOne.attr('src', './assets/weather_icons/02d.png')
+                iconOne.attr('src', './assets/weatherIcons/02d.png')
             } else if (day1Icon === '02n'){
-                iconOne.attr('src', './assets/weather_icons/02n.png')
+                iconOne.attr('src', './assets/weatherIcons/02n.png')
             } else if (day1Icon === '03d'){
-                iconOne.attr('src', './assets/weather_icons/03d.png')
+                iconOne.attr('src', './assets/weatherIcons/03d.png')
             } else if (day1Icon === '03n'){
-                iconOne.attr('src', './assets/weather_icons/03d.png')
+                iconOne.attr('src', './assets/weatherIcons/03d.png')
             } else if (day1Icon === '04d'){
-                iconOne.attr('src', './assets/weather_icons/04d.png')
+                iconOne.attr('src', './assets/weatherIcons/04d.png')
             } else if (day1Icon === '04n'){
-                iconOne.attr('src', './assets/weather_icons/04d.png')
+                iconOne.attr('src', './assets/weatherIcons/04d.png')
             } else if (day1Icon === '09d'){
-                iconOne.attr('src', './assets/weather_icons/09d.png')
+                iconOne.attr('src', './assets/weatherIcons/09d.png')
             } else if (day1Icon === '09n'){
-                iconOne.attr('src', './assets/weather_icons/09d.png')
+                iconOne.attr('src', './assets/weatherIcons/09d.png')
             } else if (day1Icon === '10d'){
-                iconOne.attr('src', './assets/weather_icons/10d.png')
+                iconOne.attr('src', './assets/weatherIcons/10d.png')
             } else if (day1Icon === '10n'){
-                iconOne.attr('src', './assets/weather_icons/10n.png')
+                iconOne.attr('src', './assets/weatherIcons/10n.png')
             } else if (day1Icon === '11d'){
-                iconOne.attr('src', './assets/weather_icons/11d.png')
+                iconOne.attr('src', './assets/weatherIcons/11d.png')
             } else if (day1Icon === '11n'){
-                iconOne.attr('src', './assets/weather_icons/11d.png')
+                iconOne.attr('src', './assets/weatherIcons/11d.png')
             } else if (day1Icon === '13d'){
-                iconOne.attr('src', './assets/weather_icons/13d.png')
+                iconOne.attr('src', './assets/weatherIcons/13d.png')
             } else if (day1Icon === '13n'){
-                iconOne.attr('src', './assets/weather_icons/13d.png')
+                iconOne.attr('src', './assets/weatherIcons/13d.png')
             } else if (day1Icon === '50d'){
-                iconOne.attr('src', './assets/weather_icons/50d.png')
+                iconOne.attr('src', './assets/weatherIcons/50d.png')
             } else if (day1Icon === '50n'){
-                iconOne.attr('src', './assets/weather_icons/50d.png')
+                iconOne.attr('src', './assets/weatherIcons/50d.png')
             }
             
             var day2Icon = data.list[12].weather[0].icon;
             var iconTwo = $('#day2Icon');
     
             if(day2Icon === '01d'){
-                iconTwo.attr('src', './assets/weather_icons/01d.png')
+                iconTwo.attr('src', './assets/weatherIcons/01d.png')
             } else if (day2Icon === '01n'){
-                iconTwo.attr('src', './assets/weather_icons/01n.png')
+                iconTwo.attr('src', './assets/weatherIcons/01n.png')
             } else if (day2Icon === '02d'){
-                iconTwo.attr('src', './assets/weather_icons/02d.png')
+                iconTwo.attr('src', './assets/weatherIcons/02d.png')
             } else if (day2Icon === '02n'){
-                iconTwo.attr('src', './assets/weather_icons/02n.png')
+                iconTwo.attr('src', './assets/weatherIcons/02n.png')
             } else if (day2Icon === '03d'){
-                iconTwo.attr('src', './assets/weather_icons/03d.png')
+                iconTwo.attr('src', './assets/weatherIcons/03d.png')
             } else if (day2Icon === '03n'){
-                iconTwo.attr('src', './assets/weather_icons/03d.png')
+                iconTwo.attr('src', './assets/weatherIcons/03d.png')
             } else if (day2Icon === '04d'){
-                iconTwo.attr('src', './assets/weather_icons/04d.png')
+                iconTwo.attr('src', './assets/weatherIcons/04d.png')
             } else if (day2Icon === '04n'){
-                iconTwo.attr('src', './assets/weather_icons/04d.png')
+                iconTwo.attr('src', './assets/weatherIcons/04d.png')
             } else if (day2Icon === '09d'){
-                iconTwo.attr('src', './assets/weather_icons/09d.png')
+                iconTwo.attr('src', './assets/weatherIcons/09d.png')
             } else if (day2Icon === '09n'){
-                iconTwo.attr('src', './assets/weather_icons/09d.png')
+                iconTwo.attr('src', './assets/weatherIcons/09d.png')
             } else if (day2Icon === '10d'){
-                iconTwo.attr('src', './assets/weather_icons/10d.png')
+                iconTwo.attr('src', './assets/weatherIcons/10d.png')
             } else if (day2Icon === '10n'){
-                iconTwo.attr('src', './assets/weather_icons/10n.png')
+                iconTwo.attr('src', './assets/weatherIcons/10n.png')
             } else if (day2Icon === '11d'){
-                iconTwo.attr('src', './assets/weather_icons/11d.png')
+                iconTwo.attr('src', './assets/weatherIcons/11d.png')
             } else if (day2Icon === '11n'){
-                iconTwo.attr('src', './assets/weather_icons/11d.png')
+                iconTwo.attr('src', './assets/weatherIcons/11d.png')
             } else if (day2Icon === '13d'){
-                iconTwo.attr('src', './assets/weather_icons/13d.png')
+                iconTwo.attr('src', './assets/weatherIcons/13d.png')
             } else if (day2Icon === '13n'){
-                iconTwo.attr('src', './assets/weather_icons/13d.png')
+                iconTwo.attr('src', './assets/weatherIcons/13d.png')
             } else if (day2Icon === '50d'){
-                iconTwo.attr('src', './assets/weather_icons/50d.png')
+                iconTwo.attr('src', './assets/weatherIcons/50d.png')
             } else if (day2Icon === '50n'){
-                iconTwo.attr('src', './assets/weather_icons/50d.png')
+                iconTwo.attr('src', './assets/weatherIcons/50d.png')
             }
     
             var day3Icon = data.list[20].weather[0].icon;
             var iconThree = $('#day3Icon');
     
             if(day3Icon === '01d'){
-                iconThree.attr('src', './assets/weather_icons/01d.png')
+                iconThree.attr('src', './assets/weatherIcons/01d.png')
             } else if (day3Icon === '01n'){
-                iconThree.attr('src', './assets/weather_icons/01n.png')
+                iconThree.attr('src', './assets/weatherIcons/01n.png')
             } else if (day3Icon === '02d'){
-                iconThree.attr('src', './assets/weather_icons/02d.png')
+                iconThree.attr('src', './assets/weatherIcons/02d.png')
             } else if (day3Icon === '02n'){
-                iconThree.attr('src', './assets/weather_icons/02n.png')
+                iconThree.attr('src', './assets/weatherIcons/02n.png')
             } else if (day3Icon === '03d'){
-                iconThree.attr('src', './assets/weather_icons/03d.png')
+                iconThree.attr('src', './assets/weatherIcons/03d.png')
             } else if (day3Icon === '03n'){
-                iconThree.attr('src', './assets/weather_icons/03d.png')
+                iconThree.attr('src', './assets/weatherIcons/03d.png')
             } else if (day3Icon === '04d'){
-                iconThree.attr('src', './assets/weather_icons/04d.png')
+                iconThree.attr('src', './assets/weatherIcons/04d.png')
             } else if (day3Icon === '04n'){
-                iconThree.attr('src', './assets/weather_icons/04d.png')
+                iconThree.attr('src', './assets/weatherIcons/04d.png')
             } else if (day3Icon === '09d'){
-                iconThree.attr('src', './assets/weather_icons/09d.png')
+                iconThree.attr('src', './assets/weatherIcons/09d.png')
             } else if (day3Icon === '09n'){
-                iconThree.attr('src', './assets/weather_icons/09d.png')
+                iconThree.attr('src', './assets/weatherIcons/09d.png')
             } else if (day3Icon === '10d'){
-                iconThree.attr('src', './assets/weather_icons/10d.png')
+                iconThree.attr('src', './assets/weatherIcons/10d.png')
             } else if (day3Icon === '10n'){
-                iconThree.attr('src', './assets/weather_icons/10n.png')
+                iconThree.attr('src', './assets/weatherIcons/10n.png')
             } else if (day3Icon === '11d'){
-                iconThree.attr('src', './assets/weather_icons/11d.png')
+                iconThree.attr('src', './assets/weatherIcons/11d.png')
             } else if (day3Icon === '11n'){
-                iconThree.attr('src', './assets/weather_icons/11d.png')
+                iconThree.attr('src', './assets/weatherIcons/11d.png')
             } else if (day3Icon === '13d'){
-                iconThree.attr('src', './assets/weather_icons/13d.png')
+                iconThree.attr('src', './assets/weatherIcons/13d.png')
             } else if (day3Icon === '13n'){
-                iconThree.attr('src', './assets/weather_icons/13d.png')
+                iconThree.attr('src', './assets/weatherIcons/13d.png')
             } else if (day3Icon === '50d'){
-                iconThree.attr('src', './assets/weather_icons/50d.png')
+                iconThree.attr('src', './assets/weatherIcons/50d.png')
             } else if (day3Icon === '50n'){
-                iconThree.attr('src', './assets/weather_icons/50d.png')
+                iconThree.attr('src', './assets/weatherIcons/50d.png')
             }
     
             var day4Icon = data.list[28].weather[0].icon;
             var iconFour = $('#day4Icon');
     
             if(day4Icon === '01d'){
-                iconFour.attr('src', './assets/weather_icons/01d.png')
+                iconFour.attr('src', './assets/weatherIcons/01d.png')
             } else if (day4Icon === '01n'){
-                iconFour.attr('src', './assets/weather_icons/01n.png')
+                iconFour.attr('src', './assets/weatherIcons/01n.png')
             } else if (day4Icon === '02d'){
-                iconFour.attr('src', './assets/weather_icons/02d.png')
+                iconFour.attr('src', './assets/weatherIcons/02d.png')
             } else if (day4Icon === '02n'){
-                iconFour.attr('src', './assets/weather_icons/02n.png')
+                iconFour.attr('src', './assets/weatherIcons/02n.png')
             } else if (day4Icon === '03d'){
-                iconFour.attr('src', './assets/weather_icons/03d.png')
+                iconFour.attr('src', './assets/weatherIcons/03d.png')
             } else if (day4Icon === '03n'){
-                iconFour.attr('src', './assets/weather_icons/03d.png')
+                iconFour.attr('src', './assets/weatherIcons/03d.png')
             } else if (day4Icon === '04d'){
-                iconFour.attr('src', './assets/weather_icons/04d.png')
+                iconFour.attr('src', './assets/weatherIcons/04d.png')
             } else if (day4Icon === '04n'){
-                iconFour.attr('src', './assets/weather_icons/04d.png')
+                iconFour.attr('src', './assets/weatherIcons/04d.png')
             } else if (day4Icon === '09d'){
-                iconFour.attr('src', './assets/weather_icons/09d.png')
+                iconFour.attr('src', './assets/weatherIcons/09d.png')
             } else if (day4Icon === '09n'){
-                iconFour.attr('src', './assets/weather_icons/09d.png')
+                iconFour.attr('src', './assets/weatherIcons/09d.png')
             } else if (day4Icon === '10d'){
-                iconFour.attr('src', './assets/weather_icons/10d.png')
+                iconFour.attr('src', './assets/weatherIcons/10d.png')
             } else if (day4Icon === '10n'){
-                iconFour.attr('src', './assets/weather_icons/10n.png')
+                iconFour.attr('src', './assets/weatherIcons/10n.png')
             } else if (day4Icon === '11d'){
-                iconFour.attr('src', './assets/weather_icons/11d.png')
+                iconFour.attr('src', './assets/weatherIcons/11d.png')
             } else if (day4Icon === '11n'){
-                iconFour.attr('src', './assets/weather_icons/11d.png')
+                iconFour.attr('src', './assets/weatherIcons/11d.png')
             } else if (day4Icon === '13d'){
-                iconFour.attr('src', './assets/weather_icons/13d.png')
+                iconFour.attr('src', './assets/weatherIcons/13d.png')
             } else if (day4Icon === '13n'){
-                iconFour.attr('src', './assets/weather_icons/13d.png')
+                iconFour.attr('src', './assets/weatherIcons/13d.png')
             } else if (day4Icon === '50d'){
-                iconFour.attr('src', './assets/weather_icons/50d.png')
+                iconFour.attr('src', './assets/weatherIcons/50d.png')
             } else if (day4Icon === '50n'){
-                iconFour.attr('src', './assets/weather_icons/50d.png')
+                iconFour.attr('src', './assets/weatherIcons/50d.png')
             }
     
             var day5Icon = data.list[36].weather[0].icon;
             var iconFive = $('#day5Icon');
     
             if(day5Icon === '01d'){
-                iconFive.attr('src', './assets/weather_icons/01d.png')
+                iconFive.attr('src', './assets/weatherIcons/01d.png')
             } else if (day5Icon === '01n'){
-                iconFive.attr('src', './assets/weather_icons/01n.png')
+                iconFive.attr('src', './assets/weatherIcons/01n.png')
             } else if (day5Icon === '02d'){
-                iconFive.attr('src', './assets/weather_icons/02d.png')
+                iconFive.attr('src', './assets/weatherIcons/02d.png')
             } else if (day5Icon === '02n'){
-                iconFive.attr('src', './assets/weather_icons/02n.png')
+                iconFive.attr('src', './assets/weatherIcons/02n.png')
             } else if (day5Icon === '03d'){
-                iconFive.attr('src', './assets/weather_icons/03d.png')
+                iconFive.attr('src', './assets/weatherIcons/03d.png')
             } else if (day5Icon === '03n'){
-                iconFive.attr('src', './assets/weather_icons/03d.png')
+                iconFive.attr('src', './assets/weatherIcons/03d.png')
             } else if (day5Icon === '04d'){
-                iconFive.attr('src', './assets/weather_icons/04d.png')
+                iconFive.attr('src', './assets/weatherIcons/04d.png')
             } else if (day5Icon === '04n'){
-                iconFive.attr('src', './assets/weather_icons/04d.png')
+                iconFive.attr('src', './assets/weatherIcons/04d.png')
             } else if (day5Icon === '09d'){
-                iconFive.attr('src', './assets/weather_icons/09d.png')
+                iconFive.attr('src', './assets/weatherIcons/09d.png')
             } else if (day5Icon === '09n'){
-                iconFive.attr('src', './assets/weather_icons/09d.png')
+                iconFive.attr('src', './assets/weatherIcons/09d.png')
             } else if (day5Icon === '10d'){
-                iconFive.attr('src', './assets/weather_icons/10d.png')
+                iconFive.attr('src', './assets/weatherIcons/10d.png')
             } else if (day5Icon === '10n'){
-                iconFive.attr('src', './assets/weather_icons/10n.png')
+                iconFive.attr('src', './assets/weatherIcons/10n.png')
             } else if (day5Icon === '11d'){
-                iconFive.attr('src', './assets/weather_icons/11d.png')
+                iconFive.attr('src', './assets/weatherIcons/11d.png')
             } else if (day5Icon === '11n'){
-                iconFive.attr('src', './assets/weather_icons/11d.png')
+                iconFive.attr('src', './assets/weatherIcons/11d.png')
             } else if (day5Icon === '13d'){
-                iconFive.attr('src', './assets/weather_icons/13d.png')
+                iconFive.attr('src', './assets/weatherIcons/13d.png')
             } else if (day5Icon === '13n'){
-                iconFive.attr('src', './assets/weather_icons/13d.png')
+                iconFive.attr('src', './assets/weatherIcons/13d.png')
             } else if (day5Icon === '50d'){
-                iconFive.attr('src', './assets/weather_icons/50d.png')
+                iconFive.attr('src', './assets/weatherIcons/50d.png')
             } else if (day5Icon === '50n'){
-                iconFive.attr('src', './assets/weather_icons/50d.png')
+                iconFive.attr('src', './assets/weatherIcons/50d.png')
             }
     
             // 5 Day Icon End

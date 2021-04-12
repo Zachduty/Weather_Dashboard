@@ -1,0 +1,29 @@
+.container {
+    background-color: rgb(82, 82, 82);
+    color: whitesmoke;
+}
+
+.jumbotron {
+    background-color: rgb(82, 82, 82);
+}
+
+.list-group-item {
+    background-color: rgb(60, 131, 212);
+    color: whitesmoke;
+}
+
+.current-list-group-item {
+    list-style-type: none;
+    padding: 12px;
+    margin: 10px;
+    font-size: larger;
+}
+
+body {
+    background-color: whitesmoke;
+}
+.card-header {
+    border: 2px;
+    border-style: groove;
+    border-radius: 2px;
+}
